@@ -1,6 +1,4 @@
 
-
-
 User.create(name: "ellazondo", email: "e@gmail.com", password: "batterypark123")
 User.create(name: "bob", email: "b@gmail.com", password: "rubyonrails4")
 User.create(name: "chris", email: "c@gmail.com", password: "flatironschool321")
@@ -12,5 +10,3 @@ Movie.create(name: "The Big Lebowski", poster: "https://m.media-amazon.com/image
 Comment.create(user_id: 1, movie_id: 3, text: "OMG, loved it!")
 Comment.create(user_id: 2, movie_id: 2, text: "What a gas!")
 Comment.create(user_id: 3, movie_id: 1, text: "I am still laughing!")
-
-
