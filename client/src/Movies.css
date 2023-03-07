@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.container >img {
+    max-width: 150px;
+    margin-top: 50px;
+    border-radius: 100%;
+}
+
+.featuredImageColumn {
+    margin-top: 50px;
+    
+}
+
+
+
+
