@@ -62,7 +62,7 @@ function updateComment(event) {
 
 
 function handleDeleteComment(id) {
-fetch(`/comments ${id}`, {
+fetch(`/comments/${id}`, {
   method: 'DELETE',
   headers: {
     'Content-Type': 'application/json'

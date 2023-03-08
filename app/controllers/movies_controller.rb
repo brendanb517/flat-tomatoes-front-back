@@ -7,9 +7,9 @@ class MoviesController < ApplicationController
     def show
         movie = Movie.find_by(id: params[:id])
         if(movie)
-            render json: movie
+            render json: movie, serializer: MovieCommentsSerializer
         else 
-            render json: {error: "Movie not found"}, status: not_found
+            render json: {error: "Movie not found"}, status: :not_found
         end
     end
 
