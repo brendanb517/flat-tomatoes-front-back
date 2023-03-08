@@ -11,3 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.signupWrapper {
+  display: flex;
+  flex-direction: row;
+  margin-top: 15px;
+}

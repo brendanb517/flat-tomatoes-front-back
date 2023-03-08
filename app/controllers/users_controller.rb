@@ -5,23 +5,26 @@ class UsersController < ApplicationController
         render json: users, status: :ok
     end
 
-    def create 
-        user = User.create(user_params) 
-        if(user)
-            render json: user, status: :created
-        else 
-            render json: {error: "User not found"}, status: not_found
-        end
-    end
-
     def show
-        user = User.find_by(id: params[:id])
+        user = User.find_by(id: session[:user_id])
         if(user)
             render json: user
         else 
-            render json: {error: "User not found"}, status: not_found
+            render json: {error: "User not found"}, status: :not_found
         end
     end
+
+    def create 
+        new_user = User.create(user_params) 
+        if(new_user.valid?)
+            session[:user_id] = new_user.id
+            render json: new_user, status: :created
+        else 
+            render json: {errors: new_user.errors.full_messages}, status: :unprocessable_entity
+        end
+    end
+
+
 
     def update 
         user = User.find_by(id: params[:id])
@@ -50,6 +53,6 @@ class UsersController < ApplicationController
 private 
 
     def user_params
-        params.permit(:username, :email, :password)
+        params.permit(:name, :email, :password)
     end
 end
