@@ -137,7 +137,7 @@ function onLogin(event){
             }
           </Route>
           <Route path="/movies">
-            {user ? <MovieList movies={movies} /> : "Please log in to view movies"}
+            {user ? <MovieList movies={movies} user={user} /> : "Please log in to view movies"}
           </Route>
           <Route path="/create_movie">
             {user ? <Comment /> : "Please log in to add a comment to a movie"}

@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
 import Comment from "./Comment"
 
- function AddComment({comment}) {
+ function AddComment({comment, user, featuredMovie}) {
 
  
 const [comments, setComments] = useState([]);
 // const [updateComment, setUpdateComment] = useState([]);
-const [commentForm, setCommentForm] = useState({
-  //user_id: 1,
-  //movie_id: 1
-})
+const [commentForm, setCommentForm] = useState('')
+// const [commentForm, setCommentForm] = useState({
+//   user_id: 1,
+//   movie_id: 1
+// })
 
 useEffect(() => {
   fetch('http://localhost:3000/comments')
@@ -19,12 +20,18 @@ useEffect(() => {
   })
   }, [])
 
-const commentComponents = comments.map((comment) => {
+// const commentComponents = comments.map((comment) => {
 
-   return (<Comment key={comment.id} comment={comment}/>)
-  })
+//    return (<Comment key={comment.id} comment={comment}/>)
+//   })
 
 function handleSubmit (e) {
+
+  const newObj = {
+    user_id: user,
+    movie_id: featuredMovie,
+    text: commentForm
+  }
   e.preventDefault();
   console.log(commentForm)
   fetch("/comments" , {
@@ -32,15 +39,17 @@ function handleSubmit (e) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(commentForm),
+    body: JSON.stringify(newObj),
   })
   .then(r=> r.json())
   .then((newComment) => setComments([...comments, newComment]))
 }
-
-function updateComment(event) {
-      setCommentForm({...commentForm, [event.target.name]: event.target.value});
+function postComment(event) {
+  setCommentForm(event.target.value);
 }
+// function postComment(event) {
+//       setCommentForm({...commentForm, [event.target.name]: event.target.value});
+// }
 
 // function handleEditComment(id, commentIndex) {
 //   fetch(`/comments/${id}`, {
@@ -86,13 +95,11 @@ fetch(`/comments/${id}`, {
         type="text" 
         name="text" 
         placeholder="Enter comment here"
-        onChange={updateComment}
+        onChange={postComment}
          />
         <button type="submit">Submit Comment</button>
-        <button type="submit">Edit Comment</button>
-        <button type="submit">Delete Button</button>
         </form>
-        {commentComponents}
+        {/* {commentComponents} */}
         </div>
     )
 }
