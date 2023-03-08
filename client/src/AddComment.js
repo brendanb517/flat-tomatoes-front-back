@@ -3,6 +3,7 @@ import Comment from "./Comment"
 
  function AddComment({comment}) {
 
+  // const [questions, setQuestions] = useState({});
 const [comments, setComments] = useState([]);
 const [commentForm, setCommentForm] = useState({
   //user_id: 1,
@@ -40,23 +41,23 @@ function updateComment(event) {
       setCommentForm({...commentForm, [event.target.name]: event.target.value});
 }
 
-function handleEditComment(id, correctIndex) {
-  fetch(`/comments ${id}`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ correctIndex }),
-  })
-    .then((r) => r.json())
-    .then((updatedQuestion) => {
-      const updatedQuestions = questions.map((q) => {
-        if (q.id === updatedQuestion.id) return updatedQuestion;
-        return q;
-      });
-      setQuestions(updatedQuestions);
-    });
-}
+// function handleEditComment(id, correctIndex) {
+//   fetch(`/comments ${id}`, {
+//     method: "PATCH",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({ correctIndex }),
+//   })
+//     .then((r) => r.json())
+//     .then((updatedQuestion) => {
+//       const updatedQuestions = questions.map((q) => {
+//         if (q.id === updatedQuestion.id) return updatedQuestion;
+//         return q;
+//       });
+//       setQuestions(updatedQuestions);
+//     });
+// }
 
 
 function handleDeleteComment(id) {

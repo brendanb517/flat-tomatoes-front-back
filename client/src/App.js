@@ -8,7 +8,7 @@ import Login from './Login';
 import NavBar from './NavBar';
 import LoggedOutNavBar from './LoggedOutNavBar';
 import AddComment from './AddComment';
-import UpdateComment from './UpdateComment';
+//import UpdateComment from './UpdateComment';
 
 function App() {
 
@@ -141,9 +141,9 @@ function onLogin(event){
           <Route path="/create_movie">
             {user ? <AddComment /> : "Please log in to add a comment to a movie"}
           </Route>
-          <Route path="/update_comment">
+          {/*<Route path="/update_comment">
             {user ? <UpdateComment /> : "Please log in to update a comment"}
-          </Route>
+          </Route>*/}
         </Switch>
       </header>
     </div>
