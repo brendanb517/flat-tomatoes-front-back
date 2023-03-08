@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
 
     def index 
         comments = Comment.all
-        render json: users, status: :ok
+        render json: comments, status: :ok
     end
 
     def create 
