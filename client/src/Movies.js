@@ -1,4 +1,4 @@
-import { useEffect,useState } from "react";
+import { useEffect} from "react";
 import AddMovie from "./AddMovie";
 import "./Movies.css";
 import AddComment from "./AddComment";
@@ -35,7 +35,7 @@ useEffect( () => {
         
         <div>
             <picture className="featuredImage">
-                <img src="https://m.media-amazon.com/images/M/MV5BMTM5MDY5MDQyOV5BMl5BanBnXkFtZTgwMzM3NzMxMDE@._V1_SX300.jpg" />
+                <img src="https://m.media-amazon.com/images/M/MV5BMTM5MDY5MDQyOV5BMl5BanBnXkFtZTgwMzM3NzMxMDE@._V1_SX300.jpg" alt="movie img"/>
             </picture>
                 
                 <h3>COMMENTS</h3>
