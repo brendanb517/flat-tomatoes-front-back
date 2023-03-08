@@ -8,10 +8,10 @@ class CommentsController < ApplicationController
 
     def create 
         comment = Comment.create(comment_params) 
-        if(comment)
+        if(comment.valid?)
             render json: comment, status: :created
         else 
-            render json: {error: "User not found"}, status: not_found
+            render json: {errors: comment.errors.full_messages}, status: :unprocessable_entity
         end
     end
 
@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
         if(comment)
             render json: comment
         else 
-            render json: {error: "User not found"}, status: not_found
+            render json: {error: "User not found"}, status: :not_found
         end
     end
 
@@ -52,6 +52,6 @@ class CommentsController < ApplicationController
     private
 
     def comment_params
-        params.permit(:user_id, :show_id, :text)
+        params.permit(:user_id, :movie_id, :text)
     end
 end
