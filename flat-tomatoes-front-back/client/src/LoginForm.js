@@ -1,23 +1,16 @@
-import React, {useState} from "react";
+import React from "react";
 import "./loginform.css"
 
-function LoginForm() {
-    const [userInfo, setUserInfo] = useState([]);
-    const username = document.getElementById("username-input");
-    const password = document.getElementById("password-input");
-    function handleSubmit(){
-        setUserInfo([username.value, password.value]);
-    }
-
+function LoginForm([onLoginSubmit]) {
     return (
     <div>
         <h1>Flat Tomatoes</h1>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={onLoginSubmit}>
             <label htmlFor="username-input">Username:</label>
             <input id="username-input" type="text" placeholder="Username"/>
             <label htmlFor="password-input">Password:</label>
             <input id="password-input" type="password" placeholder="password"/>
-            <input type="submit" value="Login"/>
+            <input id="submit-button" type="submit" value="Login"/>
         </form>
     </div>
     )

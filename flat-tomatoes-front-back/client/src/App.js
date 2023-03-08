@@ -5,12 +5,45 @@ import LoginForm from "./LoginForm";
 
 function App() {
     const [count, setCount] = useState(0);
+    const [loginData, setLoginData] = useState({});
+    const [signupData, setSignupData] = useState({});
 
   useEffect(() => {
     fetch("/hello")
       .then((r) => r.json())
       .then((data) => setCount(data.count));
   }, []);
+
+  function handleLoginSubmit(event){
+    event.preventDefault();
+    useEffect(async() => {
+      const response = await fetch("/LoginForm", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(loginData)
+      });
+      if (response.ok)
+
+    })
+  }
+
+  function handleSignupSubmit(event){
+    event.preventDefault();
+    useEffect(async() => {
+      const response = await fetch("/SignupForm", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(signupData)
+      });
+      if (response.ok)
+
+    })
+  }
+
   return (
     <div className="App">
       <h1>Page Count: {count}</h1>
