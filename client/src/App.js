@@ -153,6 +153,3 @@ function onLogin(event){
 
 export default App;
 
-    // <div className="App">
-    //   <Movies />
-    // </div>

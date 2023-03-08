@@ -1,3 +1,6 @@
+User.destroy_all
+Movie.destroy_all
+Comment.destroy_all
 
 User.create(name: "ellazondo", email: "e@gmail.com", password: "batterypark123")
 User.create(name: "bob", email: "b@gmail.com", password: "rubyonrails4")
