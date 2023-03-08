@@ -15,10 +15,10 @@ class MoviesController < ApplicationController
 
     def create 
          movie = Movie.create(movie_params) 
-        if(movie)
+        if(movie.valid?)
             render json: movie, status: :created
         else 
-            render json: {error: "User not found"}, status: not_found
+            render json: {errors: movie.errors.full_messages}, status: :unprocessable_entity
         end
     end
 

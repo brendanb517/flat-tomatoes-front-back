@@ -1,6 +1,6 @@
 class UserShowSerializer < ActiveModel::Serializer
-  attributes :id, :name
+  attributes :id, :name, :email, :password
 
   has_many :comments
-  hs_many :movies
+  has_many :movies
 end
