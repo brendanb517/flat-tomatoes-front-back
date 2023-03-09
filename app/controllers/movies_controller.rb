@@ -25,10 +25,10 @@ class MoviesController < ApplicationController
     end
 
     def not_found_response
-        render json: {error: "Movie not found"}, status: :404
+        render json: {error: "Movie not found"}, status: 404
     end
 
     def invalid_response
-        render json: {errors: invalid.record.errors.full_messages}, status: :422
+        render json: {errors: invalid.record.errors.full_messages}, status: 422
     end
 end

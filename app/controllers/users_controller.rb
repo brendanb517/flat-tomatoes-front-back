@@ -52,6 +52,6 @@ private
     end
 
     def invalid_response
-        render json: {errors: invalid.record.errors.full_messages}, status: :422
+        render json: {errors: invalid.record.errors.full_messages}, status: 422
     end
 end
