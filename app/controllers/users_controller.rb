@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+    rescue_from ActiveRecord::RecordInvalid, with: :invalid_response
 
     def index 
         users = User.all
@@ -7,12 +8,7 @@ class UsersController < ApplicationController
 
     def create 
         user = User.create(user_params)
-        # byebug
-        if(user.valid?)
-            render json: user, status: :created
-        else 
-            render json: {errors: user.errors.full_messages}, status: :unprocessable_entity
-        end
+        render json: user, status: :created
     end
 
     def show
@@ -53,5 +49,9 @@ private
 
     def user_params
         params.permit(:name, :email, :password)
+    end
+
+    def invalid_response
+        render json: {errors: invalid.record.errors.full_messages}, status: :422
     end
 end

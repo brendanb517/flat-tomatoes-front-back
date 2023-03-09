@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
-    rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
-    rescue_from ActiveRecord::RecordInvalid, with: :render_invalid_response
+    rescue_from ActiveRecord::RecordNotFound, with: :not_found_response
+    rescue_from ActiveRecord::RecordInvalid, with: :invalid_response
 
     def index 
         comments = Comment.all
@@ -10,12 +10,6 @@ class CommentsController < ApplicationController
     def create 
         comment = Comment.create(comment_params) 
         render json: comment, status: :created
-        #byebug
-        # if(comment.valid?)
-        #     render json: comment, status: :created
-        # else 
-        #     render json: {errors: comment.errors.full_messages}, status: :unprocessable_entity
-        # end
     end
 
     def show
@@ -27,17 +21,6 @@ class CommentsController < ApplicationController
         comment = find_comment
         comment.update(comment_params)
         render json: comment, status: :accepted
-        # comment = Comment.find_by(id: params[:id])
-        # if(comment.valid?)
-        #     comment.update(comment_params)
-        #     if(comment)
-        #         render json: comment, status: :accepted
-        #     else
-        #         render json: {errors: comment.errors.full_messages}, status: :unprocessable_entity
-        #     end
-        # else
-        #     render_not_found_response
-        # end
     end
 
     def destroy 
@@ -57,11 +40,11 @@ class CommentsController < ApplicationController
         params.permit(:text)
     end
 
-    def render_not_found_response
+    def not_found_response
         render json: {error: "Comment not found"}, status: :not_found
     end
 
-    def render_invalid_response
-        render json: {errors: comment.errors.full_messages}, status: :unprocessable_entity
+    def invalid_response
+        render json: {errors: invalid.record.errors.full_messages}, status: :unprocessable_entity
     end
 end
