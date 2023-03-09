@@ -13,7 +13,7 @@ return (
 <div>
 {user_id}
 {text}
-
+<button onClick={console.log("deleted")}>delete</button>
 </div>
 <div>
 <AddComment />

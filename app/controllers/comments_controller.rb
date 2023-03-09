@@ -19,31 +19,36 @@ class CommentsController < ApplicationController
     end
 
     def show
-        comment = find_comment
-        render json: comment
+        comment = Comment.find_by(id: params[:id])
+        if(comment)
+            render json: comment
+        else 
+            render json: {error: "User not found"}, status: :not_found
+        end
     end
 
-    def update
-        comment = find_comment
-        comment.update(comment_params)
-        render json: comment, status: :accepted
-        # comment = Comment.find_by(id: params[:id])
-        # if(comment.valid?)
-        #     comment.update(comment_params)
-        #     if(comment)
-        #         render json: comment, status: :accepted
-        #     else
-        #         render json: {errors: comment.errors.full_messages}, status: :unprocessable_entity
-        #     end
-        # else
-        #     render_not_found_response
-        # end
+    def update 
+        comment = Comment.find_by(id: params[:id])
+        if(comment.valid?)
+            comment.update(comment_params)
+            if(comment)
+                render json: comment, status: :accepted
+            else
+                render json: {errors: comment.errors.full_messages}, status: :unprocessable_entity
+            end
+        else
+            render json: {error: "User not found"}, status: :not_found
+        end
     end
 
     def destroy 
-        comment = find_comment
-        comment.destroy 
-        head :no_content
+        comment = Comment.find_by(id: params[:id])
+        if(comment)
+            comment.destroy 
+            head :no_content 
+        else 
+            render json: { error: "User not found" }, status: :not_found
+        end
     end
 
 

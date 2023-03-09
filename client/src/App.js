@@ -27,6 +27,7 @@ useEffect( () => {
 
 //added by ella. Handle user login.
 function onLogin(event){
+  console.log(loginFormData)
     event.preventDefault()
     fetch("/login", {
       method: "POST",
