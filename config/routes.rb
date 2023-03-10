@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   # get 'session/create'
   # get 'session/destroy'
-  resources :comments
-  resources :movies
-  resources :users
+  resources :comments, only: [:index, :create, :show, :update, :destroy]
+  resources :movies, only: [:index, :show, :create]
+  resources :users, only: [:index, :create, :show]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
