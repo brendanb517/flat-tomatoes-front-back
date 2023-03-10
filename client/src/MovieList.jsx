@@ -4,7 +4,18 @@ import { useState } from "react";
 import AddComment from "./AddComment";
  export default function MovieList ({ movies, user }) {
      const [featuredMovie, setFeaturedMovie] = useState({});
-    let settings = {
+     const [idToDelete, setIdToDelete] = useState(null);
+
+    function handleDelete(id) {
+      console.log(id)
+      fetch(`/comments/${id}`, {
+      method: 'DELETE',
+    });
+    // setIdToDelete(id);
+    }
+
+    
+     let settings = {
         dots: true,
         infinite: true,
         speed: 500,
@@ -12,7 +23,11 @@ import AddComment from "./AddComment";
         slidesToScroll: 1
       };
       let featuredMovieComments = featuredMovie.comments?.map(comment => {
-        return <li key={comment.id}>{comment.text}</li>
+        return <li key={comment.id}>{comment.text}
+        <button onClick={() => {
+          handleDelete(comment.id)
+        }}>Delete</button>
+        </li>
       })
     return (
         // <div className="cards">
@@ -33,7 +48,7 @@ import AddComment from "./AddComment";
                 {featuredMovieComments}
             </ul>
           </div>
-          <AddComment user={user.id} featuredMovie={featuredMovie.id} />
+          <AddComment user={user.id} featuredMovie={featuredMovie.id} idToDelete={idToDelete} />
           </>
         // </div>
     )}

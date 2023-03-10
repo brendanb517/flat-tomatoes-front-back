@@ -1,6 +1,6 @@
 class Comment < ApplicationRecord
-    belongs_to :movie, dependent: :destroy
-    belongs_to :user, dependent: :destroy
+    belongs_to :movie
+    belongs_to :user
 
     validates :text, presence: true
 end

@@ -26,6 +26,7 @@ class CommentsController < ApplicationController
     def destroy 
         comment = find_comment
         comment.destroy 
+        byebug
         head :no_content
     end
 
@@ -37,11 +38,11 @@ class CommentsController < ApplicationController
     end
 
     def comment_params
-        params.permit(:text, :user_id, :movie_id, )
+        params.permit(:text, :user_id, :movie_id)
     end
 
     def not_found_response
-        render json: {error: "Comment not found"}, status: 404
+        render json: {error: "Comment not found"}, status: :not_found
     end
 
     def invalid_response

@@ -1,16 +1,12 @@
 import { useState, useEffect } from "react";
 import Comment from "./Comment"
 
- function AddComment({comment, user, featuredMovie}) {
+ function AddComment({user, featuredMovie }) {
 
  
 const [comments, setComments] = useState([]);
 // const [updateComment, setUpdateComment] = useState([]);
 const [commentForm, setCommentForm] = useState('')
-// const [commentForm, setCommentForm] = useState({
-//   user_id: 1,
-//   movie_id: 1
-// })
 
 useEffect(() => {
   fetch('http://localhost:3000/comments')
